@@ -25,8 +25,14 @@
         <div class="bg-dark p-4">
             <h5 class="text-white h4">W App</h5>
             <div class="mt-3">
-                <a href="/location" class="btn btn-primary mr-2">Weather</a>
-                <a href="/measurement" class="btn btn-primary">Measurement</a>
+                {% if is_granted('ROLE_USER') %}
+                    <a href="{{ path('app_logout') }}" class=" btn btn-info">Logout</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="btn btn-info">Login</a>
+                {% endif %}
+
+                <a href="/location" class="btn btn-secondary mr-2">Weather</a>
+                <a href="/measurement" class="btn btn-secondary">Measurement</a>
             </div>
         </div>
     </div>
@@ -37,6 +43,7 @@
             </button>
         </div>
     </nav>
+
 
     <div class="container">
         {% block body %}
